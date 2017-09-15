@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/contact_profile_view"
+        android:layout_width="@dimen/contact_image_size"
+        android:layout_height="@dimen/contact_image_size"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="29dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@color/colorPrimary" />
+
+    <TextView
+        android:id="@+id/name_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="17dp"
+        app:layout_constraintLeft_toRightOf="@+id/contact_profile_view"
+        tools:text="Walter White"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="38dp" />
+
+    <TextView
+        android:id="@+id/phone_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="17dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintLeft_toRightOf="@+id/contact_profile_view"
+        app:layout_constraintTop_toBottomOf="@+id/name_text_view"
+        tools:text="(505) 139-1844" />
+</android.support.constraint.ConstraintLayout>

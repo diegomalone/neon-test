@@ -1,7 +1,9 @@
 package com.diegomalone.neontest.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -31,6 +33,14 @@ public class WelcomeActivity extends BaseActivity {
 
         mNameView.setText("Diego Malone");
         mEmailView.setText("diegomalone@gmail.com");
+
+        mSendMoneyButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(WelcomeActivity.this, SendMoneyActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void initializeViews() {
