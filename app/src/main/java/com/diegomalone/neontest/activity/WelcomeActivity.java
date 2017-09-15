@@ -31,8 +31,8 @@ public class WelcomeActivity extends BaseActivity {
 
         initializeViews();
 
-        mNameView.setText("Diego Malone");
-        mEmailView.setText("diegomalone@gmail.com");
+        mNameView.setText(mIdentificationPreferences.getName());
+        mEmailView.setText(mIdentificationPreferences.getEmail());
 
         mSendMoneyButton.setOnClickListener(new View.OnClickListener() {
             @Override
