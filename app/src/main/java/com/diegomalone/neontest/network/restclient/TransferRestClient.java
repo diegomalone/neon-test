@@ -1,6 +1,5 @@
 package com.diegomalone.neontest.network.restclient;
 
-import com.diegomalone.neontest.network.response.StringResponse;
 import com.diegomalone.neontest.network.response.TransferListResponse;
 
 import retrofit2.http.Field;
@@ -17,14 +16,14 @@ import rx.Observable;
 public interface TransferRestClient {
 
     @GET("GenerateToken")
-    Observable<StringResponse> generateToken(@Query("email") String email,
-                                             @Query("name") String name);
+    Observable<String> generateToken(@Query("email") String email,
+                                     @Query("nome") String name);
 
     @POST("SendMoney")
     @FormUrlEncoded
-    Observable<StringResponse> sendMoney(@Field("clientId") String clientId,
-                                         @Field("token") String token,
-                                         @Field("value") Double value);
+    Observable<String> sendMoney(@Field("clientId") String clientId,
+                                 @Field("token") String token,
+                                 @Field("valor") Double value);
 
     @GET("GetTransfers")
     Observable<TransferListResponse> getTransfers(@Query("token") String token);
