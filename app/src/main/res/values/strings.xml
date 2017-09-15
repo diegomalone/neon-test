@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Neon Test</string>
+    <string name="title_activity_main">MainActivity</string>
+
+    <!-- Welcome activity -->
+    <string name="content_description_profile_image">Imagem de perfil</string>
+    <string name="send_money_button">Enviar dinheiro</string>
+    <string name="historic_button">Histórico</string>
+
 </resources>
