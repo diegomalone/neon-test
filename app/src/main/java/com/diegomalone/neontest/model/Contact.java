@@ -1,5 +1,7 @@
 package com.diegomalone.neontest.model;
 
+import org.apache.commons.lang3.StringUtils;
+
 /**
  * Created by Diego Malone on 15/09/17.
  */
@@ -7,6 +9,7 @@ package com.diegomalone.neontest.model;
 public class Contact {
 
     private String id, name, phone, photoUrl;
+    private double transferredValue = 0d;
 
     public Contact(String id, String name, String phone, String photoUrl) {
         this.id = id;
@@ -47,6 +50,26 @@ public class Contact {
         this.photoUrl = photoUrl;
     }
 
+    public boolean hasPhotoUrl() {
+        return StringUtils.isNotBlank(getPhotoUrl());
+    }
+
+    public double getTransferredValue() {
+        return transferredValue;
+    }
+
+    public void setTransferredValue(double transferredValue) {
+        this.transferredValue = transferredValue;
+    }
+
+    public void addTransferredValue(double transferredValue) {
+        this.transferredValue += transferredValue;
+    }
+
+    public boolean hasTransferredValue() {
+        return getTransferredValue() != 0d;
+    }
+
     @Override
     public String toString() {
         return "Contact{" +
@@ -54,6 +77,7 @@ public class Contact {
                 ", name='" + name + '\'' +
                 ", phone='" + phone + '\'' +
                 ", photoUrl='" + photoUrl + '\'' +
+                ", transferredValue=" + transferredValue +
                 '}';
     }
 }

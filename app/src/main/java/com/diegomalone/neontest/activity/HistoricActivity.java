@@ -8,33 +8,26 @@ import android.support.v7.widget.RecyclerView;
 
 import com.diegomalone.neontest.R;
 import com.diegomalone.neontest.adapter.ContactAdapter;
-import com.diegomalone.neontest.model.Contact;
 import com.diegomalone.neontest.persistence.ContactDatabase;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Diego Malone on 15/09/17.
  */
 
-public class SendMoneyActivity extends BaseActivity {
+public class HistoricActivity extends BaseActivity {
 
     private final String TAG = getClass().getSimpleName();
 
     private RecyclerView mContactRecyclerView;
 
-    private List<Contact> mContactList = new ArrayList<>();
     private ContactAdapter mContactAdapter;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_send_money);
+        setContentView(R.layout.activity_historic);
 
-        setupTopBar(getString(R.string.send_money_activity_title));
-
-        mContactList = ContactDatabase.getContactList();
+        setupTopBar(getString(R.string.historic_activity_title));
 
         initializeViews();
 
@@ -49,10 +42,11 @@ public class SendMoneyActivity extends BaseActivity {
         mContactRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mContactRecyclerView.setItemAnimator(new DefaultItemAnimator());
 
-        mContactAdapter.setContactList(mContactList);
+        mContactAdapter.setContactList(ContactDatabase.getContactListWithTransfers());
     }
 
     private void initializeViews() {
-        mContactRecyclerView = findViewById(R.id.contact_recycler_view);
+        mContactRecyclerView = findViewById(R.id.payment_history_recycler_view);
     }
+
 }

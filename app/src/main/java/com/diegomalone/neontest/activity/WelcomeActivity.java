@@ -39,6 +39,14 @@ public class WelcomeActivity extends BaseActivity {
                 startActivity(intent);
             }
         });
+
+        mHistoricButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(WelcomeActivity.this, HistoricActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void initializeViews() {

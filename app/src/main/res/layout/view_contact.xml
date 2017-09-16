@@ -51,12 +51,26 @@
         android:id="@+id/phone_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="0dp"
         android:layout_marginLeft="12dp"
         android:textColor="@color/accentText"
         android:textSize="@dimen/text_default"
-        app:layout_constraintBottom_toBottomOf="@+id/contact_profile_view"
+        app:layout_goneMarginBottom="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/transferred_value_text_view"
         app:layout_constraintLeft_toRightOf="@+id/contact_profile_view"
         tools:text="(505) 139-1844" />
+
+    <TextView
+        android:id="@+id/transferred_value_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="0dp"
+        android:layout_marginLeft="12dp"
+        android:textColor="@color/accentText"
+        android:textSize="@dimen/text_small"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/contact_profile_view"
+        app:layout_constraintLeft_toRightOf="@+id/contact_profile_view"
+        tools:text="R$ 120,00" />
 
 </android.support.constraint.ConstraintLayout>

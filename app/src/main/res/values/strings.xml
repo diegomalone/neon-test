@@ -3,6 +3,7 @@
 
     <!-- Common strings -->
     <string name="content_description_up_button">Botão para voltar</string>
+    <string name="money_mask">R$ %1$s</string>
 
     <!-- Welcome activity -->
     <string name="content_description_profile_image">Imagem de perfil</string>
@@ -12,5 +13,8 @@
     <!-- Contacts activithy -->
     <string name="content_description_contact_image">Imagem do contato</string>
     <string name="send_money_activity_title">Enviar dinheiro</string>
+
+    <!-- Historic Activity -->
+    <string name="historic_activity_title">Histórico de eventos</string>
 
 </resources>
