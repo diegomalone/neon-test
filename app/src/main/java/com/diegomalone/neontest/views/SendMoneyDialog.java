@@ -14,7 +14,14 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.diegomalone.neontest.R;
 import com.diegomalone.neontest.model.Contact;
+import com.diegomalone.neontest.network.service.TransferApi;
+import com.diegomalone.neontest.persistence.IdentificationPreferences;
 import com.diegomalone.neontest.utils.MoneyUtils;
+
+import org.apache.commons.lang3.StringUtils;
+
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
 
 /**
  * Created by Diego Malone on 16/09/17.
@@ -26,7 +33,10 @@ public class SendMoneyDialog extends Dialog {
 
     private Context mContext;
 
-    private View mCloseButton;
+    private IdentificationPreferences mIdentificationPreferences;
+    private TransferApi mTransferApi;
+
+    private View mCloseButton, mSendMoneyButton;
     private TextView mNameView, mPhoneView;
     private ImageView mContactProfileImageView;
     private EditText mValueToSendEditText;
@@ -37,6 +47,9 @@ public class SendMoneyDialog extends Dialog {
         super(context);
 
         mContext = context;
+
+        mIdentificationPreferences = IdentificationPreferences.getInstance(mContext);
+        mTransferApi = new TransferApi(mContext);
     }
 
     @Override
@@ -54,6 +67,7 @@ public class SendMoneyDialog extends Dialog {
         mContactProfileImageView = findViewById(R.id.contact_profile_view);
         mNameView = findViewById(R.id.name_text_view);
         mPhoneView = findViewById(R.id.phone_text_view);
+        mSendMoneyButton = findViewById(R.id.send_money_button);
         mValueToSendEditText = findViewById(R.id.value_to_send_edit_text);
 
         mValueToSendEditText.addTextChangedListener(MoneyUtils.getMoneyTextWatcher(mContext, mValueToSendEditText));
@@ -63,6 +77,13 @@ public class SendMoneyDialog extends Dialog {
             @Override
             public void onClick(View view) {
                 SendMoneyDialog.this.cancel();
+            }
+        });
+
+        mSendMoneyButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sendMoney();
             }
         });
     }
@@ -76,5 +97,25 @@ public class SendMoneyDialog extends Dialog {
         Glide.with(mContext)
                 .load(contact.getPhotoUrl())
                 .into(mContactProfileImageView);
+    }
+
+    private void sendMoney() {
+        double value = MoneyUtils.getDoubleValue(mValueToSendEditText.getText().toString());
+
+        mTransferApi.sendMoney(mContact.getId(), mIdentificationPreferences.getToken(), value)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<String>() {
+                    @Override
+                    public void call(String response) {
+                        if (StringUtils.equalsIgnoreCase(response, "true")) {
+                            SendMoneyDialog.this.cancel();
+                        }
+                    }
+                }, new Action1<Throwable>() {
+                    @Override
+                    public void call(Throwable throwable) {
+                        throwable.printStackTrace();
+                    }
+                });
     }
 }

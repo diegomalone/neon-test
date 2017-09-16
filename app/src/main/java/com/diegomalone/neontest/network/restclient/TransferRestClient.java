@@ -21,7 +21,7 @@ public interface TransferRestClient {
 
     @POST("SendMoney")
     @FormUrlEncoded
-    Observable<String> sendMoney(@Field("clientId") int clientId,
+    Observable<String> sendMoney(@Field("ClienteId") int contactId,
                                  @Field("token") String token,
                                  @Field("valor") Double value);
 

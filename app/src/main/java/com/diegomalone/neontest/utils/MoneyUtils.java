@@ -26,7 +26,7 @@ public class MoneyUtils {
         otherSymbols.setDecimalSeparator(',');
         otherSymbols.setGroupingSeparator('.');
 
-        DecimalFormat formatter = new DecimalFormat("#.00", otherSymbols);
+        DecimalFormat formatter = new DecimalFormat("0.00", otherSymbols);
 
         return context.getString(R.string.money_mask, formatter.format(value));
     }
