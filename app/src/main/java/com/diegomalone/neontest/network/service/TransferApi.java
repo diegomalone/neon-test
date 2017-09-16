@@ -4,8 +4,11 @@ import android.content.Context;
 
 import com.diegomalone.neontest.R;
 import com.diegomalone.neontest.network.ServiceFactory;
-import com.diegomalone.neontest.network.response.TransferListResponse;
+import com.diegomalone.neontest.network.response.TransferResponse;
 import com.diegomalone.neontest.network.restclient.TransferRestClient;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import rx.Observable;
 import rx.functions.Func1;
@@ -39,13 +42,13 @@ public class TransferApi {
                 .subscribeOn(Schedulers.io());
     }
 
-    public Observable<TransferListResponse> getTransfers(String token) {
+    public Observable<List<TransferResponse>> getTransfers(String token) {
         return mTransferRestClient.getTransfers(token)
                 .subscribeOn(Schedulers.io())
-                .onErrorResumeNext(new Func1<Throwable, Observable<? extends TransferListResponse>>() {
+                .onErrorResumeNext(new Func1<Throwable, Observable<? extends List<TransferResponse>>>() {
                     @Override
-                    public Observable<? extends TransferListResponse> call(Throwable throwable) {
-                        return Observable.just(new TransferListResponse(true));
+                    public Observable<? extends List<TransferResponse>> call(Throwable throwable) {
+                        return Observable.just(new ArrayList<TransferResponse>());
                     }
                 });
     }
