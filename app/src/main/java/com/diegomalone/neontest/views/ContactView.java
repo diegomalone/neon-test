@@ -8,6 +8,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.diegomalone.neontest.R;
 import com.diegomalone.neontest.model.Contact;
+import com.diegomalone.neontest.model.Transfer;
 import com.diegomalone.neontest.utils.MoneyUtils;
 
 /**
@@ -55,12 +56,18 @@ public class ContactView extends BaseCardView {
         Glide.with(this)
                 .load(contact.getPhotoUrl())
                 .into(mContactProfileImageView);
+    }
 
-        if (mContact.hasTransferredValue()) {
-            mTransferredValueView.setText(MoneyUtils.getMoneyString(mContext, mContact.getTransferredValue()));
-            mTransferredValueView.setVisibility(VISIBLE);
-        } else {
-            mTransferredValueView.setVisibility(GONE);
-        }
+    private void setTransferredValue(Transfer transfer) {
+        mTransferredValueView.setText(MoneyUtils.getMoneyString(mContext, transfer.getValue()));
+        mTransferredValueView.setVisibility(VISIBLE);
+    }
+
+    public void setTransfer(Transfer transfer) {
+        if (!transfer.hasContact()) return;
+
+        setContact(transfer.getContact());
+
+        setTransferredValue(transfer);
     }
 }

@@ -34,7 +34,7 @@ public class TransferApi {
                 .subscribeOn(Schedulers.io());
     }
 
-    public Observable<String> sendMoney(String clientId, String token, Double value) {
+    public Observable<String> sendMoney(int clientId, String token, Double value) {
         return mTransferRestClient.sendMoney(clientId, token, value)
                 .subscribeOn(Schedulers.io());
     }

@@ -8,6 +8,8 @@ import android.widget.TextView;
 
 import com.diegomalone.neontest.R;
 import com.diegomalone.neontest.persistence.IdentificationPreferences;
+import com.diegomalone.neontest.persistence.database.DatabaseInterface;
+import com.diegomalone.neontest.persistence.database.MemoryDatabaseInterface;
 
 /**
  * Created by Diego Malone on 15/09/17.
@@ -18,6 +20,8 @@ public class BaseActivity extends AppCompatActivity {
     private final String TAG = getClass().getSimpleName();
 
     protected IdentificationPreferences mIdentificationPreferences;
+
+    protected DatabaseInterface mDatabaseInterface = new MemoryDatabaseInterface();
 
     protected View mUpButton;
     protected TextView mActivityTitleTextView;

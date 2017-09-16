@@ -7,8 +7,12 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.diegomalone.neontest.R;
-import com.diegomalone.neontest.adapter.ContactAdapter;
-import com.diegomalone.neontest.persistence.ContactDatabase;
+import com.diegomalone.neontest.adapter.TransferAdapter;
+import com.diegomalone.neontest.model.Contact;
+import com.diegomalone.neontest.model.Transfer;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Diego Malone on 15/09/17.
@@ -20,7 +24,7 @@ public class HistoricActivity extends BaseActivity {
 
     private RecyclerView mContactRecyclerView;
 
-    private ContactAdapter mContactAdapter;
+    private TransferAdapter transferAdapter;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -35,18 +39,41 @@ public class HistoricActivity extends BaseActivity {
     }
 
     private void setupRecyclerView() {
-        mContactAdapter = new ContactAdapter(this);
+        transferAdapter = new TransferAdapter(this);
 
-        mContactRecyclerView.setAdapter(mContactAdapter);
+        mContactRecyclerView.setAdapter(transferAdapter);
         mContactRecyclerView.setHasFixedSize(true);
         mContactRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mContactRecyclerView.setItemAnimator(new DefaultItemAnimator());
 
-        mContactAdapter.setContactList(ContactDatabase.getContactListWithTransfers());
+        transferAdapter.setTransferList(addContactsToTransfer(setupTransferList()));
     }
 
     private void initializeViews() {
         mContactRecyclerView = findViewById(R.id.payment_history_recycler_view);
     }
 
+    private List<Transfer> setupTransferList() {
+        List<Transfer> transferList = new ArrayList<>();
+
+        transferList.add(new Transfer(1, 1, 120, ""));
+        transferList.add(new Transfer(2, 1, 1220, ""));
+        transferList.add(new Transfer(3, 7, 100, ""));
+
+        return transferList;
+    }
+
+    private List<Transfer> addContactsToTransfer(List<Transfer> transferList) {
+        List<Transfer> transferListWithContact = new ArrayList<>();
+
+        for (Transfer transfer : transferList) {
+            Contact contact = mDatabaseInterface.getContact(transfer.getContactId());
+            transfer.setContact(contact);
+
+            transferListWithContact.add(transfer);
+        }
+
+
+        return transferListWithContact;
+    }
 }

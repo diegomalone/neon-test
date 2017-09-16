@@ -8,21 +8,22 @@ import org.apache.commons.lang3.StringUtils;
 
 public class Contact {
 
-    private String id, name, phone, photoUrl;
+    private int id;
+    private String name, phone, photoUrl;
     private double transferredValue = 0d;
 
-    public Contact(String id, String name, String phone, String photoUrl) {
+    public Contact(int id, String name, String phone, String photoUrl) {
         this.id = id;
         this.name = name;
         this.phone = phone;
         this.photoUrl = photoUrl;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

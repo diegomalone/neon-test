@@ -9,7 +9,6 @@ import android.support.v7.widget.RecyclerView;
 import com.diegomalone.neontest.R;
 import com.diegomalone.neontest.adapter.ContactAdapter;
 import com.diegomalone.neontest.model.Contact;
-import com.diegomalone.neontest.persistence.ContactDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +33,7 @@ public class SendMoneyActivity extends BaseActivity {
 
         setupTopBar(getString(R.string.send_money_activity_title));
 
-        mContactList = ContactDatabase.getContactList();
+        mContactList = mDatabaseInterface.getContactList();
 
         initializeViews();
 
