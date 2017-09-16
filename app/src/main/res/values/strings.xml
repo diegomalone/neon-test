@@ -12,7 +12,10 @@
 
     <!-- Contacts activithy -->
     <string name="content_description_contact_image">Imagem do contato</string>
+    <string name="content_description_dialog_close">Fechar diálogo</string>
     <string name="send_money_activity_title">Enviar dinheiro</string>
+    <string name="label_amount_to_send">Valor a enviar:</string>
+    <string name="send_money_button_send">Enviar</string>
 
     <!-- Historic Activity -->
     <string name="historic_activity_title">Histórico de eventos</string>

@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import com.diegomalone.neontest.R;
 import com.diegomalone.neontest.adapter.ContactAdapter;
 import com.diegomalone.neontest.model.Contact;
+import com.diegomalone.neontest.views.SendMoneyDialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,5 +54,12 @@ public class SendMoneyActivity extends BaseActivity {
 
     private void initializeViews() {
         mContactRecyclerView = findViewById(R.id.contact_recycler_view);
+    }
+
+    public void selectContact(Contact contact) {
+        SendMoneyDialog customDialog = new SendMoneyDialog(this);
+        customDialog.show();
+
+        customDialog.setContact(contact);
     }
 }

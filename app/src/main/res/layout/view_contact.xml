@@ -25,11 +25,11 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="12dp"
         android:contentDescription="@string/content_description_contact_image"
-        android:src="@drawable/profile"
         app:civ_border_color="@color/colorAccent"
         app:civ_border_width="1dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view" />
+        app:layout_constraintTop_toBottomOf="@+id/view"
+        tools:src="@drawable/profile" />
 
     <TextView
         android:id="@+id/name_text_view"
@@ -55,9 +55,9 @@
         android:layout_marginLeft="12dp"
         android:textColor="@color/accentText"
         android:textSize="@dimen/text_default"
-        app:layout_goneMarginBottom="10dp"
         app:layout_constraintBottom_toTopOf="@+id/transferred_value_text_view"
         app:layout_constraintLeft_toRightOf="@+id/contact_profile_view"
+        app:layout_goneMarginBottom="10dp"
         tools:text="(505) 139-1844" />
 
     <TextView

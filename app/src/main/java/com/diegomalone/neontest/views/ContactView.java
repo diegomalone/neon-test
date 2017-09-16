@@ -2,11 +2,13 @@ package com.diegomalone.neontest.views;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.diegomalone.neontest.R;
+import com.diegomalone.neontest.activity.SendMoneyActivity;
 import com.diegomalone.neontest.model.Contact;
 import com.diegomalone.neontest.model.Transfer;
 import com.diegomalone.neontest.utils.MoneyUtils;
@@ -47,7 +49,7 @@ public class ContactView extends BaseCardView {
         mTransferredValueView = findViewById(R.id.transferred_value_text_view);
     }
 
-    public void setContact(Contact contact) {
+    public void setContact(final Contact contact) {
         this.mContact = contact;
 
         mNameView.setText(contact.getName());
@@ -56,6 +58,19 @@ public class ContactView extends BaseCardView {
         Glide.with(this)
                 .load(contact.getPhotoUrl())
                 .into(mContactProfileImageView);
+
+        setOnItemSelectedListener();
+    }
+
+    private void setOnItemSelectedListener() {
+        if (mContext instanceof SendMoneyActivity) {
+            setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    ((SendMoneyActivity) mContext).selectContact(mContact);
+                }
+            });
+        }
     }
 
     private void setTransferredValue(Transfer transfer) {
