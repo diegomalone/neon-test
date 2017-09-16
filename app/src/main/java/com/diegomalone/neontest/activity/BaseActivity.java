@@ -10,6 +10,7 @@ import com.diegomalone.neontest.R;
 import com.diegomalone.neontest.persistence.IdentificationPreferences;
 import com.diegomalone.neontest.persistence.database.DatabaseInterface;
 import com.diegomalone.neontest.persistence.database.MemoryDatabaseInterface;
+import com.diegomalone.neontest.views.UltraLoading;
 
 /**
  * Created by Diego Malone on 15/09/17.
@@ -25,6 +26,7 @@ public class BaseActivity extends AppCompatActivity {
 
     protected View mUpButton;
     protected TextView mActivityTitleTextView;
+    protected UltraLoading mUltraLoading;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -33,7 +35,7 @@ public class BaseActivity extends AppCompatActivity {
         mIdentificationPreferences = IdentificationPreferences.getInstance(this);
     }
 
-    protected void setupTopBar(String activityTitle) {
+    protected void setupDefaultViews(String activityTitle) {
         mUpButton = findViewById(R.id.up_button);
         mActivityTitleTextView = findViewById(R.id.activity_title);
 

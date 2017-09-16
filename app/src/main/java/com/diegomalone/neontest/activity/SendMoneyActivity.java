@@ -32,7 +32,7 @@ public class SendMoneyActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_send_money);
 
-        setupTopBar(getString(R.string.send_money_activity_title));
+        setupDefaultViews(getString(R.string.send_money_activity_title));
 
         mContactList = mDatabaseInterface.getContactList();
 

@@ -39,7 +39,7 @@ public class HistoricActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_historic);
 
-        setupTopBar(getString(R.string.historic_activity_title));
+        setupDefaultViews(getString(R.string.historic_activity_title));
 
         mTransferApi = new TransferApi(this);
 

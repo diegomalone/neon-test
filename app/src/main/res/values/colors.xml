@@ -11,4 +11,7 @@
     <color name="backgroundDark">@color/colorPrimaryDark</color>
     <color name="backgroundLight">#473970</color>
     <color name="backgroundInput">@android:color/white</color>
+
+    <color name="loading_color">@android:color/white</color>
+    <color name="rippleColor">#D2A8FF</color>
 </resources>
