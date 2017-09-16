@@ -3,7 +3,8 @@ package com.diegomalone.neontest.activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.TextView;
 
 import com.diegomalone.neontest.R;
 import com.diegomalone.neontest.persistence.IdentificationPreferences;
@@ -18,6 +19,9 @@ public class BaseActivity extends AppCompatActivity {
 
     protected IdentificationPreferences mIdentificationPreferences;
 
+    protected View mUpButton;
+    protected TextView mActivityTitleTextView;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,11 +29,21 @@ public class BaseActivity extends AppCompatActivity {
         mIdentificationPreferences = IdentificationPreferences.getInstance(this);
     }
 
-    protected void setupToolbar() {
-        Toolbar toolbar = findViewById(R.id.toolbar);
+    protected void setupTopBar(String activityTitle) {
+        mUpButton = findViewById(R.id.up_button);
+        mActivityTitleTextView = findViewById(R.id.activity_title);
 
-        if (toolbar != null) {
-            setSupportActionBar(toolbar);
+        if (mUpButton != null) {
+            mUpButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onBackPressed();
+                }
+            });
+        }
+
+        if (mActivityTitleTextView != null) {
+            mActivityTitleTextView.setText(activityTitle);
         }
     }
 }

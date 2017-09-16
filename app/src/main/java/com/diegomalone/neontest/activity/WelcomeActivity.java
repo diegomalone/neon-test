@@ -27,8 +27,6 @@ public class WelcomeActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
 
-        setupToolbar();
-
         initializeViews();
 
         mNameView.setText(mIdentificationPreferences.getName());

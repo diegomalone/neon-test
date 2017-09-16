@@ -3,35 +3,60 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:paddingBottom="12dp">
 
-    <ImageView
-        android:id="@+id/contact_profile_view"
-        android:layout_width="@dimen/contact_image_size"
-        android:layout_height="@dimen/contact_image_size"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="29dp"
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@color/colorAccent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@color/colorPrimary" />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/contact_profile_view"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="12dp"
+        android:contentDescription="@string/content_description_contact_image"
+        android:src="@drawable/profile"
+        app:civ_border_color="@color/colorAccent"
+        app:civ_border_width="1dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view" />
 
     <TextView
         android:id="@+id/name_text_view"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="17dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="24dp"
+        android:maxLines="2"
+        android:textColor="@color/accentText"
+        android:textSize="@dimen/text_default"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/phone_text_view"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toRightOf="@+id/contact_profile_view"
-        tools:text="Walter White"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="38dp" />
+        app:layout_constraintRight_toRightOf="parent"
+        tools:text="Walter Whi White Walter Whi White Walter Whi White " />
 
     <TextView
         android:id="@+id/phone_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="17dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="12dp"
+        android:textColor="@color/accentText"
+        android:textSize="@dimen/text_default"
+        app:layout_constraintBottom_toBottomOf="@+id/contact_profile_view"
         app:layout_constraintLeft_toRightOf="@+id/contact_profile_view"
-        app:layout_constraintTop_toBottomOf="@+id/name_text_view"
         tools:text="(505) 139-1844" />
+
 </android.support.constraint.ConstraintLayout>

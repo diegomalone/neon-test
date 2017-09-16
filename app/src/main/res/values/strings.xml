@@ -1,9 +1,16 @@
 <resources>
     <string name="app_name">Ultra Wallet</string>
 
+    <!-- Common strings -->
+    <string name="content_description_up_button">Botão para voltar</string>
+
     <!-- Welcome activity -->
     <string name="content_description_profile_image">Imagem de perfil</string>
     <string name="send_money_button">Enviar dinheiro</string>
     <string name="historic_button">Histórico</string>
+
+    <!-- Contacts activithy -->
+    <string name="content_description_contact_image">Imagem do contato</string>
+    <string name="send_money_activity_title">Enviar dinheiro</string>
 
 </resources>
