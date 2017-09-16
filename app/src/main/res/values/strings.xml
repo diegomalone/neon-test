@@ -1,6 +1,5 @@
 <resources>
-    <string name="app_name">Neon Test</string>
-    <string name="title_activity_main">MainActivity</string>
+    <string name="app_name">Ultra Wallet</string>
 
     <!-- Welcome activity -->
     <string name="content_description_profile_image">Imagem de perfil</string>

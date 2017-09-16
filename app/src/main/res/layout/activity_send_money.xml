@@ -3,9 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.diegomalone.neontest.activity.SendMoneyActivity">
-
-    <include layout="@layout/include_default_toolbar" />
+    tools:context="com.diegomalone.neontest.activity.SendMoneyActivity"
+    android:background="@drawable/background_gradient">
 
     <include layout="@layout/content_send_money" />
 
