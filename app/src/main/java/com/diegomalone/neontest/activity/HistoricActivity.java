@@ -5,7 +5,6 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
 
 import com.diegomalone.neontest.R;
 import com.diegomalone.neontest.adapter.TotalTransferAdapter;
@@ -36,7 +35,6 @@ public class HistoricActivity extends BaseActivity {
 
     private TransferApi mTransferApi;
 
-    private View mEmptyView;
     private RecyclerView mContactRecyclerView, mChartRecyclerView;
 
     private TransferAdapter mTransferAdapter;
@@ -76,7 +74,6 @@ public class HistoricActivity extends BaseActivity {
     private void initializeViews() {
         mContactRecyclerView = findViewById(R.id.payment_history_recycler_view);
         mChartRecyclerView = findViewById(R.id.payment_chart_recycler_view);
-        mEmptyView = findViewById(R.id.empty_view);
     }
 
     private void requestTransferList() {
@@ -97,6 +94,7 @@ public class HistoricActivity extends BaseActivity {
                     @Override
                     public void call(Throwable throwable) {
                         hideLoading();
+                        showErrorView(getString(R.string.historic_error_getting_list));
                         throwable.printStackTrace();
                     }
                 });
@@ -104,7 +102,7 @@ public class HistoricActivity extends BaseActivity {
 
     private void receivedTransferList(List<Transfer> transferList) {
         if (transferList == null || transferList.isEmpty()) {
-            mEmptyView.setVisibility(VISIBLE);
+            showEmptyView(getString(R.string.historic_empty_list));
             return;
         }
 

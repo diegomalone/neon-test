@@ -19,6 +19,7 @@
 
     <!-- Historic Activity -->
     <string name="historic_activity_title">Histórico de eventos</string>
-    <string name="historic_no_register">Poxa, você ainda não enviou dinheiro pra nenhum contato</string>
+    <string name="historic_empty_list">Poxa, você ainda não enviou dinheiro pra nenhum contato</string>
+    <string name="historic_error_getting_list">Opa, não foi possível se comunicar com a nuvem</string>
 
 </resources>

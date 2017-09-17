@@ -4,6 +4,7 @@ import com.diegomalone.neontest.network.response.TransferResponse;
 
 import java.util.List;
 
+import retrofit2.Response;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -28,5 +29,5 @@ public interface TransferRestClient {
                                  @Field("valor") Double value);
 
     @GET("GetTransfers")
-    Observable<List<TransferResponse>> getTransfers(@Query("token") String token);
+    Observable<Response<List<TransferResponse>>> getTransfers(@Query("token") String token);
 }

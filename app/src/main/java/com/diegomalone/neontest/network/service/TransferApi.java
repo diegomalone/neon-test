@@ -1,6 +1,7 @@
 package com.diegomalone.neontest.network.service;
 
 import android.content.Context;
+import android.support.annotation.Nullable;
 
 import com.diegomalone.neontest.R;
 import com.diegomalone.neontest.network.ServiceFactory;
@@ -10,6 +11,7 @@ import com.diegomalone.neontest.network.restclient.TransferRestClient;
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Response;
 import rx.Observable;
 import rx.functions.Func1;
 import rx.schedulers.Schedulers;
@@ -45,10 +47,23 @@ public class TransferApi {
     public Observable<List<TransferResponse>> getTransfers(String token) {
         return mTransferRestClient.getTransfers(token)
                 .subscribeOn(Schedulers.io())
-                .onErrorResumeNext(new Func1<Throwable, Observable<? extends List<TransferResponse>>>() {
+                .flatMap(new Func1<Response<List<TransferResponse>>, Observable<List<TransferResponse>>>() {
                     @Override
-                    public Observable<? extends List<TransferResponse>> call(Throwable throwable) {
-                        return Observable.just(new ArrayList<TransferResponse>());
+                    public Observable<List<TransferResponse>> call(Response<List<TransferResponse>> listResponse) {
+                        Observable<List<TransferResponse>> transferResponseList = checkEmptyListHttp400(listResponse);
+                        if (transferResponseList != null) return transferResponseList;
+
+                        return Observable.just(listResponse.body());
+                    }
+
+                    @Nullable
+                    private Observable<List<TransferResponse>> checkEmptyListHttp400(Response<List<TransferResponse>> listResponse) {
+                        if (listResponse.code() == 400) {
+                            List<TransferResponse> transferResponseList = new ArrayList<>();
+                            return Observable.just(transferResponseList);
+                        }
+                        ;
+                        return null;
                     }
                 });
     }

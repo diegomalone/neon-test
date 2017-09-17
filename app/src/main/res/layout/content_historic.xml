@@ -9,41 +9,7 @@
     tools:context="com.diegomalone.neontest.activity.HistoricActivity"
     tools:showIn="@layout/activity_historic">
 
-    <LinearLayout
-        android:id="@+id/empty_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:visibility="gone"
-        tools:visibility="visible">
-
-        <View
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_weight="1"/>
-
-        <ImageView
-            android:id="@+id/empty_icon"
-            android:layout_width="96dp"
-            android:layout_height="0dp"
-            android:layout_gravity="center_horizontal|bottom"
-            android:layout_weight="1"
-            android:src="@drawable/ic_thumb_down_white_24dp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_marginLeft="24dp"
-            android:layout_marginRight="24dp"
-            android:layout_marginTop="24dp"
-            android:layout_weight="2"
-            android:gravity="top"
-            android:text="@string/historic_no_register"
-            android:textAlignment="center"
-            android:textColor="@color/primaryText"
-            android:textSize="@dimen/text_big" />
-
-    </LinearLayout>
+    <include layout="@layout/include_information_view"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/payment_chart_recycler_view"
