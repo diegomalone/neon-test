@@ -9,18 +9,24 @@
     tools:context="com.diegomalone.neontest.activity.HistoricActivity"
     tools:showIn="@layout/activity_historic">
 
-    <include layout="@layout/include_information_view"/>
+    <include layout="@layout/include_information_view" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/payment_chart_recycler_view"
+    <com.diegomalone.neontest.views.ChartBackground
+        android:id="@+id/payment_chart_recycler_view_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:clipToPadding="false"
-        android:paddingBottom="8dp"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
-        android:paddingTop="8dp"
-        android:visibility="gone" />
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/payment_chart_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            android:paddingBottom="8dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:paddingTop="8dp"
+            android:visibility="gone" />
+    </com.diegomalone.neontest.views.ChartBackground>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/payment_history_recycler_view"

@@ -107,7 +107,7 @@ public class UltraLoading extends View {
             loadingArc.setSweepAngle(i * 45 + 90);
             loadingArc.setOval(rectF);
             loadingArc.setStyle(Paint.Style.STROKE);
-            loadingArc.setColor(ContextCompat.getColor(mContext, R.color.loading_color));
+            loadingArc.setColor(ContextCompat.getColor(mContext, R.color.colorLoading));
             loadingArc.setStrokeWidth(radius / 10f);
 
             mArcs[i] = loadingArc;
