@@ -12,6 +12,9 @@ import com.diegomalone.neontest.persistence.database.DatabaseInterface;
 import com.diegomalone.neontest.persistence.database.MemoryDatabaseInterface;
 import com.diegomalone.neontest.views.UltraLoading;
 
+import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
+
 /**
  * Created by Diego Malone on 15/09/17.
  */
@@ -38,6 +41,7 @@ public class BaseActivity extends AppCompatActivity {
     protected void setupDefaultViews(String activityTitle) {
         mUpButton = findViewById(R.id.up_button);
         mActivityTitleTextView = findViewById(R.id.activity_title);
+        mUltraLoading = findViewById(R.id.loading);
 
         if (mUpButton != null) {
             mUpButton.setOnClickListener(new View.OnClickListener() {
@@ -50,6 +54,18 @@ public class BaseActivity extends AppCompatActivity {
 
         if (mActivityTitleTextView != null) {
             mActivityTitleTextView.setText(activityTitle);
+        }
+    }
+
+    public void showLoading() {
+        if (mUltraLoading != null) {
+            mUltraLoading.setVisibility(VISIBLE);
+        }
+    }
+
+    public void hideLoading() {
+        if (mUltraLoading != null) {
+            mUltraLoading.setVisibility(GONE);
         }
     }
 }

@@ -10,9 +10,9 @@ import com.diegomalone.neontest.R;
 import com.diegomalone.neontest.adapter.TransferAdapter;
 import com.diegomalone.neontest.model.Contact;
 import com.diegomalone.neontest.model.Transfer;
+import com.diegomalone.neontest.network.response.ApiResponseConverter;
 import com.diegomalone.neontest.network.response.TransferResponse;
 import com.diegomalone.neontest.network.service.TransferApi;
-import com.diegomalone.neontest.network.response.ApiResponseConverter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,6 +64,8 @@ public class HistoricActivity extends BaseActivity {
     }
 
     private void requestTransferList() {
+        showLoading();
+
         mTransferApi.getTransfers(mIdentificationPreferences.getToken())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<List<TransferResponse>>() {
@@ -73,10 +75,12 @@ public class HistoricActivity extends BaseActivity {
                         List<Transfer> transferList = apiResponseConverter.getModelList(transferListResponse);
 
                         receivedTransferList(transferList);
+                        hideLoading();
                     }
                 }, new Action1<Throwable>() {
                     @Override
                     public void call(Throwable throwable) {
+                        hideLoading();
                         throwable.printStackTrace();
                     }
                 });

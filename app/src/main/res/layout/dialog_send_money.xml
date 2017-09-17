@@ -29,8 +29,8 @@
             android:id="@+id/contact_profile_view"
             android:layout_width="56dp"
             android:layout_height="56dp"
-            android:layout_marginTop="8dp"
             android:layout_gravity="center_horizontal"
+            android:layout_marginTop="8dp"
             android:contentDescription="@string/content_description_contact_image"
             app:civ_border_color="@color/colorAccent"
             app:civ_border_width="1dp"
@@ -81,16 +81,33 @@
             android:textSize="@dimen/text_huge"
             android:textStyle="bold" />
 
-        <Button
-            android:id="@+id/send_money_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:background="@drawable/ripple_button"
-            android:text="@string/send_money_button_send"
-            android:textAllCaps="true"
-            android:layout_marginBottom="8dp"
-            android:textColor="@color/primaryText" />
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/send_money_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/ripple_button"
+                android:elevation="1dp"
+                android:text="@string/send_money_button_send"
+                android:textAllCaps="true"
+                android:layout_marginBottom="8dp"
+                android:textColor="@color/primaryText" />
+
+            <com.diegomalone.neontest.views.UltraLoading
+                android:id="@+id/loading"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_alignBottom="@id/send_money_button"
+                android:layout_alignTop="@id/send_money_button"
+                android:layout_centerHorizontal="true"
+                android:elevation="2dp"
+                android:visibility="gone"
+                tools:visibility="visible"/>
+        </RelativeLayout>
 
     </LinearLayout>
 

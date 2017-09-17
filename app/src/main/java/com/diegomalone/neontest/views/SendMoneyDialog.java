@@ -7,6 +7,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -23,6 +24,9 @@ import org.apache.commons.lang3.StringUtils;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 
+import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
+
 /**
  * Created by Diego Malone on 16/09/17.
  */
@@ -36,10 +40,14 @@ public class SendMoneyDialog extends Dialog {
     private IdentificationPreferences mIdentificationPreferences;
     private TransferApi mTransferApi;
 
-    private View mCloseButton, mSendMoneyButton;
+    private View mCloseButton;
     private TextView mNameView, mPhoneView;
     private ImageView mContactProfileImageView;
     private EditText mValueToSendEditText;
+    private Button mSendMoneyButton;
+    private UltraLoading mUltraLoading;
+
+    private String mSendMoneyButtonText;
 
     private Contact mContact;
 
@@ -69,9 +77,12 @@ public class SendMoneyDialog extends Dialog {
         mPhoneView = findViewById(R.id.phone_text_view);
         mSendMoneyButton = findViewById(R.id.send_money_button);
         mValueToSendEditText = findViewById(R.id.value_to_send_edit_text);
+        mUltraLoading = findViewById(R.id.loading);
 
         mValueToSendEditText.addTextChangedListener(MoneyUtils.getMoneyTextWatcher(mContext, mValueToSendEditText));
         mValueToSendEditText.setText("");
+
+        mSendMoneyButtonText = mSendMoneyButton.getText().toString();
 
         mCloseButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,6 +113,8 @@ public class SendMoneyDialog extends Dialog {
     private void sendMoney() {
         double value = MoneyUtils.getDoubleValue(mValueToSendEditText.getText().toString());
 
+        showLoading();
+
         mTransferApi.sendMoney(mContact.getId(), mIdentificationPreferences.getToken(), value)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<String>() {
@@ -110,12 +123,25 @@ public class SendMoneyDialog extends Dialog {
                         if (StringUtils.equalsIgnoreCase(response, "true")) {
                             SendMoneyDialog.this.cancel();
                         }
+
+                        hideLoading();
                     }
                 }, new Action1<Throwable>() {
                     @Override
                     public void call(Throwable throwable) {
+                        hideLoading();
                         throwable.printStackTrace();
                     }
                 });
+    }
+
+    private void showLoading() {
+        mUltraLoading.setVisibility(VISIBLE);
+        mSendMoneyButton.setText(null);
+    }
+
+    private void hideLoading() {
+        mUltraLoading.setVisibility(GONE);
+        mSendMoneyButton.setText(mSendMoneyButtonText);
     }
 }
