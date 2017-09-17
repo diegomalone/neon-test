@@ -31,6 +31,13 @@ public class MoneyUtils {
         return context.getString(R.string.money_mask, formatter.format(value));
     }
 
+    public static String getMoneyWithoutMask(Context context, double value) {
+        String formattedMoney = getMoneyString(context, value);
+        formattedMoney = StringUtils.replacePattern(formattedMoney, "[^0-9,.]", "");
+
+        return formattedMoney;
+    }
+
     public static Double getDoubleValue(String valueAsString) {
         if (StringUtils.isBlank(valueAsString)) return 0d;
 

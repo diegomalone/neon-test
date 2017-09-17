@@ -7,8 +7,11 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.diegomalone.neontest.R;
+import com.diegomalone.neontest.adapter.TotalTransferAdapter;
 import com.diegomalone.neontest.adapter.TransferAdapter;
 import com.diegomalone.neontest.model.Contact;
+import com.diegomalone.neontest.model.TotalTransfer;
+import com.diegomalone.neontest.model.TotalTransferList;
 import com.diegomalone.neontest.model.Transfer;
 import com.diegomalone.neontest.network.response.ApiResponseConverter;
 import com.diegomalone.neontest.network.response.TransferResponse;
@@ -30,9 +33,10 @@ public class HistoricActivity extends BaseActivity {
 
     private TransferApi mTransferApi;
 
-    private RecyclerView mContactRecyclerView;
+    private RecyclerView mContactRecyclerView, mChartRecyclerView;
 
     private TransferAdapter mTransferAdapter;
+    private TotalTransferAdapter mTotalTransferAdapter;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -52,15 +56,22 @@ public class HistoricActivity extends BaseActivity {
 
     private void setupRecyclerView() {
         mTransferAdapter = new TransferAdapter(this);
+        mTotalTransferAdapter = new TotalTransferAdapter(this);
 
         mContactRecyclerView.setAdapter(mTransferAdapter);
         mContactRecyclerView.setHasFixedSize(true);
         mContactRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mContactRecyclerView.setItemAnimator(new DefaultItemAnimator());
+
+        mChartRecyclerView.setAdapter(mTotalTransferAdapter);
+        mChartRecyclerView.setHasFixedSize(true);
+        mChartRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        mChartRecyclerView.setItemAnimator(new DefaultItemAnimator());
     }
 
     private void initializeViews() {
         mContactRecyclerView = findViewById(R.id.payment_history_recycler_view);
+        mChartRecyclerView = findViewById(R.id.payment_chart_recycler_view);
     }
 
     private void requestTransferList() {
@@ -88,7 +99,11 @@ public class HistoricActivity extends BaseActivity {
 
     private void receivedTransferList(List<Transfer> transferList) {
         mTransferAdapter.setTransferList(addContactsToTransfer(transferList));
+
+        setTotalTransferList(transferList);
+
         mTransferAdapter.notifyDataSetChanged();
+        mTotalTransferAdapter.notifyDataSetChanged();
     }
 
     private List<Transfer> addContactsToTransfer(List<Transfer> transferList) {
@@ -102,5 +117,19 @@ public class HistoricActivity extends BaseActivity {
         }
 
         return transferListWithContact;
+    }
+
+    private void setTotalTransferList(List<Transfer> transferList) {
+        TotalTransferList totalTransferList = new TotalTransferList();
+
+        for (Transfer transfer : transferList) {
+            if (!totalTransferList.has(transfer.getContact())) {
+                totalTransferList.add(new TotalTransfer(transfer.getContact(), transfer.getValue()));
+            } else {
+                totalTransferList.get(transfer.getContact()).addValue(transfer.getValue());
+            }
+        }
+
+        mTotalTransferAdapter.setTotalTransferList(totalTransferList);
     }
 }

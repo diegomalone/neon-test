@@ -19,6 +19,10 @@ public class Contact {
         this.photoUrl = photoUrl;
     }
 
+    public boolean equals(Object otherContact) {
+        return otherContact instanceof Contact && ((Contact) otherContact).getId() == getId();
+    }
+
     public int getId() {
         return id;
     }

@@ -10,16 +10,28 @@
     tools:showIn="@layout/activity_historic">
 
     <android.support.v7.widget.RecyclerView
+        android:id="@+id/payment_chart_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        android:paddingBottom="8dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:paddingTop="8dp" />
+
+    <android.support.v7.widget.RecyclerView
         android:id="@+id/payment_history_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clipToPadding="false"
-        android:paddingTop="16dp" />
+        android:paddingTop="8dp" />
 
     <com.diegomalone.neontest.views.UltraLoading
         android:id="@+id/loading"
         android:layout_width="@dimen/loading_full"
         android:layout_height="match_parent"
-        android:layout_gravity="center" />
+        android:layout_gravity="center"
+        android:visibility="gone"
+        tools:visibility="visible" />
 
 </LinearLayout>

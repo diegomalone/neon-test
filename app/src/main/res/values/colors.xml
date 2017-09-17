@@ -12,6 +12,11 @@
     <color name="backgroundLight">#473970</color>
     <color name="backgroundInput">@android:color/white</color>
 
+    <color name="colorPhotoBorder">@color/colorAccent</color>
+
+    <color name="colorChartTop">@color/colorPrimary</color>
+    <color name="colorChartBottom">@color/colorPhotoBorder</color>
+
     <color name="loading_color">@android:color/white</color>
     <color name="rippleColor">#D2A8FF</color>
 </resources>

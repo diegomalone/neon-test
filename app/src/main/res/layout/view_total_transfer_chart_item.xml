@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="56dp"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="4dp"
+    android:layout_marginRight="4dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="112dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/transferred_value_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:ellipsize="end"
+            android:gravity="center_horizontal|bottom"
+            android:maxLines="1"
+            android:layout_weight="1"
+            android:textColor="@color/accentText"
+            android:textSize="@dimen/text_small"
+            tools:text="737.000,00" />
+
+        <View
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/background_circle" />
+
+        <View
+            android:id="@+id/graph_line"
+            android:layout_width="2dp"
+            android:layout_height="120dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/background_chart_line" />
+
+    </LinearLayout>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/contact_profile_view"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_gravity="center_horizontal"
+        android:contentDescription="@string/content_description_contact_image"
+        app:civ_border_color="@color/colorPhotoBorder"
+        app:civ_border_width="1dp"
+        tools:src="@drawable/profile" />
+
+</LinearLayout>

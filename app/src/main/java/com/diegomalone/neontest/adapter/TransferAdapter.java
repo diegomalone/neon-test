@@ -31,7 +31,7 @@ public class TransferAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        return new ContactAdapter.ContactViewHolder(new ContactView(mContext));
+        return new TransferViewHolder(new ContactView(mContext));
     }
 
     @Override
@@ -40,13 +40,13 @@ public class TransferAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder contactViewHolder, int i) {
-        ((ContactView) contactViewHolder.itemView).setTransfer(transferList.get(i));
+    public void onBindViewHolder(RecyclerView.ViewHolder transferViewHolder, int i) {
+        ((ContactView) transferViewHolder.itemView).setTransfer(transferList.get(i));
     }
 
 
-    public static class ContactViewHolder extends RecyclerView.ViewHolder {
-        public ContactViewHolder(View v) {
+    public static class TransferViewHolder extends RecyclerView.ViewHolder {
+        public TransferViewHolder(View v) {
             super(v);
         }
     }
