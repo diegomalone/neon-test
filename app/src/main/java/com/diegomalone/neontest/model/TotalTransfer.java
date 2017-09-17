@@ -10,7 +10,7 @@ public class TotalTransfer implements Comparable<TotalTransfer> {
 
     private final String TAG = getClass().getSimpleName();
 
-    private final int MINIMUM_CHART_LINE_HEIGHT = 5;
+    private final int MINIMUM_CHART_LINE_HEIGHT = 8;
 
     private Contact contact;
     private double value;

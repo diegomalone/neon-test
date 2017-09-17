@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.diegomalone.neontest.R;
+import com.diegomalone.neontest.activity.BaseActivity;
 import com.diegomalone.neontest.model.Contact;
 import com.diegomalone.neontest.network.service.TransferApi;
 import com.diegomalone.neontest.persistence.IdentificationPreferences;
@@ -123,6 +124,8 @@ public class SendMoneyDialog extends Dialog {
                         if (StringUtils.equalsIgnoreCase(response, "true")) {
                             SendMoneyDialog.this.cancel();
                         }
+
+                        ((BaseActivity) mContext).showSuccessMessage(mContext.getString(R.string.send_money_success));
 
                         hideLoading();
                     }

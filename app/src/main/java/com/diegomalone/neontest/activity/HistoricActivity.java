@@ -134,12 +134,17 @@ public class HistoricActivity extends BaseActivity {
         TotalTransferList totalTransferList = new TotalTransferList();
 
         for (Transfer transfer : transferList) {
-            if (!totalTransferList.has(transfer.getContact())) {
-                totalTransferList.add(new TotalTransfer(transfer.getContact(), transfer.getValue()));
+            Contact contact = transfer.getContact();
+            double value = transfer.getValue();
+
+            if (!totalTransferList.has(contact)) {
+                totalTransferList.add(new TotalTransfer(contact, value));
             } else {
-                totalTransferList.get(transfer.getContact()).addValue(transfer.getValue());
+                totalTransferList.get(contact).addValue(value);
             }
         }
+
+        totalTransferList.configureValues();
 
         mTotalTransferAdapter.setTotalTransferList(totalTransferList);
     }

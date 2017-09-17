@@ -16,9 +16,6 @@ public class TotalTransferList {
 
     private double highestValue;
 
-    public TotalTransferList() {
-    }
-
     public List<TotalTransfer> getTotalTransferList() {
         return totalTransferList;
     }
@@ -69,5 +66,13 @@ public class TotalTransferList {
 
     private int calculateHeight(double value) {
         return (int) ((value / highestValue) * 100f);
+    }
+
+    @Override
+    public String toString() {
+        return "TotalTransferList{" +
+                ", totalTransferList=" + totalTransferList +
+                ", highestValue=" + highestValue +
+                '}';
     }
 }

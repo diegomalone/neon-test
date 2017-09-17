@@ -11,6 +11,7 @@ import com.diegomalone.neontest.R;
 import com.diegomalone.neontest.persistence.IdentificationPreferences;
 import com.diegomalone.neontest.persistence.database.DatabaseInterface;
 import com.diegomalone.neontest.persistence.database.MemoryDatabaseInterface;
+import com.diegomalone.neontest.views.FeedbackDialog;
 import com.diegomalone.neontest.views.UltraLoading;
 
 import static android.view.View.GONE;
@@ -89,5 +90,11 @@ public class BaseActivity extends AppCompatActivity {
             mInformationTextView.setText(informationText);
             mInformationView.setVisibility(VISIBLE);
         }
+    }
+
+    public void showSuccessMessage(String message) {
+        FeedbackDialog customDialog = new FeedbackDialog(this,
+                getDrawable(R.drawable.ic_thumb_up_white_24dp), message);
+        customDialog.show();
     }
 }
