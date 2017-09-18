@@ -5,10 +5,10 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.diegomalone.neontest.R;
+import com.diegomalone.neontest.views.element.PhotoView;
 
 /**
  * Created by Diego Malone on 15/09/17.
@@ -19,7 +19,7 @@ public class WelcomeActivity extends BaseActivity {
     private final String TAG = getClass().getSimpleName();
 
     private TextView mEmailView, mNameView;
-    private ImageView mProfileView;
+    private PhotoView mProfileView;
     private Button mSendMoneyButton, mHistoricButton;
 
     @Override
@@ -55,5 +55,9 @@ public class WelcomeActivity extends BaseActivity {
         mProfileView = findViewById(R.id.profile_image_view);
         mSendMoneyButton = findViewById(R.id.send_money_button);
         mHistoricButton = findViewById(R.id.historic_button);
+
+        mProfileView.setDrawable(getDrawable(R.drawable.profile));
+        mProfileView.setGradientCircle(true);
+        mProfileView.setLineStroke(3);
     }
 }

@@ -3,10 +3,12 @@ package com.diegomalone.neontest.views.element;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Shader;
+import android.graphics.SweepGradient;
+import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.util.TypedValue;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -15,6 +17,8 @@ import com.diegomalone.neontest.R;
 import com.diegomalone.neontest.model.Contact;
 
 import org.apache.commons.lang3.StringUtils;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * Created by Diego Malone on 18/09/17.
@@ -26,12 +30,12 @@ public class PhotoView extends RelativeLayout {
 
     protected Context mContext;
 
-    private ImageView mPhotoView;
+    private CircleImageView mPhotoView;
     private TextView mPhotoInitialsTextView;
 
     private boolean mGradientCircle = false;
     private Paint mCirclePaint;
-    private int mOneDipInPixels;
+    private int mOneDipInPixels, mStrokeSizeInDips;
 
     public PhotoView(Context context) {
         super(context);
@@ -60,7 +64,9 @@ public class PhotoView extends RelativeLayout {
 
         mCirclePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mCirclePaint.setStyle(Paint.Style.STROKE);
-        mCirclePaint.setStrokeWidth(mOneDipInPixels);
+
+        mStrokeSizeInDips = 1;
+        setLineStroke(mStrokeSizeInDips);
 
         setWillNotDraw(false);
     }
@@ -95,18 +101,60 @@ public class PhotoView extends RelativeLayout {
         setupTextSize();
     }
 
+    public void setDrawable(Drawable drawable) {
+        mPhotoView.setImageDrawable(drawable);
+
+        mPhotoInitialsTextView.setVisibility(GONE);
+        mPhotoView.setVisibility(VISIBLE);
+    }
+
+    public boolean isGradientCircle() {
+        return mGradientCircle;
+    }
+
+    public void setGradientCircle(boolean gradientCircle) {
+        this.mGradientCircle = gradientCircle;
+    }
+
+    public void setLineStroke(int sizeInDips) {
+        mStrokeSizeInDips = sizeInDips;
+        mCirclePaint.setStrokeWidth(mOneDipInPixels * sizeInDips);
+
+        int paddingSize = mOneDipInPixels * sizeInDips;
+        mPhotoView.setBorderWidth(paddingSize);
+    }
+
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        int centerX = getWidth() / 2;
-        int centerY = getHeight() / 2;
-        int radius = (getWidth() / 2) - mOneDipInPixels;
-
-        mCirclePaint.setColor(ContextCompat.getColor(mContext, R.color.colorAccent));
-        canvas.drawCircle(centerX, centerY, radius, mCirclePaint);
+        if (mGradientCircle) {
+            canvas.save();
+            canvas.rotate(-90, getWidth() / 2, getHeight() / 2);
+            drawCircle(canvas);
+            canvas.restore();
+        } else {
+            drawCircle(canvas);
+        }
 
         setupTextSize();
+    }
+
+    private void drawCircle(Canvas canvas) {
+        int centerX = getWidth() / 2;
+        int centerY = getHeight() / 2;
+        int radius = (getWidth() / 2) - (mOneDipInPixels * mStrokeSizeInDips) / 2;
+
+        if (mGradientCircle) {
+            int startColor = ContextCompat.getColor(mContext, R.color.colorAccent);
+            int endColor = ContextCompat.getColor(mContext, R.color.colorPrimaryDark);
+            Shader shader = new SweepGradient(radius, radius, startColor, endColor);
+            mCirclePaint.setShader(shader);
+        } else {
+            mCirclePaint.setColor(ContextCompat.getColor(mContext, R.color.colorAccent));
+        }
+
+        canvas.drawCircle(centerX, centerY, radius, mCirclePaint);
     }
 
     public void setColor(int color) {

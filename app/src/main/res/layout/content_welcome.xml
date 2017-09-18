@@ -8,15 +8,12 @@
     tools:context="com.diegomalone.neontest.activity.WelcomeActivity"
     tools:showIn="@layout/activity_welcome">
 
-    <de.hdodenhof.circleimageview.CircleImageView
+    <com.diegomalone.neontest.views.element.PhotoView
         android:id="@+id/profile_image_view"
         android:layout_width="@dimen/profile_image_size"
         android:layout_height="@dimen/profile_image_size"
         android:layout_marginTop="92dp"
         android:contentDescription="@string/content_description_profile_image"
-        android:src="@drawable/profile"
-        app:civ_border_color="@color/colorAccent"
-        app:civ_border_width="2dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
