@@ -3,15 +3,14 @@ package com.diegomalone.neontest.views;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.diegomalone.neontest.R;
 import com.diegomalone.neontest.activity.SendMoneyActivity;
 import com.diegomalone.neontest.model.Contact;
 import com.diegomalone.neontest.model.Transfer;
 import com.diegomalone.neontest.utils.MoneyUtils;
+import com.diegomalone.neontest.views.element.PhotoView;
 
 /**
  * Created by Diego Malone on 15/09/17.
@@ -24,7 +23,7 @@ public class ContactView extends BaseCardView {
     private Context mContext;
 
     private TextView mNameView, mPhoneView, mTransferredValueView;
-    private ImageView mContactProfileImageView;
+    private PhotoView mContactProfileImageView;
 
     private Contact mContact;
 
@@ -54,10 +53,7 @@ public class ContactView extends BaseCardView {
 
         mNameView.setText(contact.getName());
         mPhoneView.setText(contact.getPhone());
-
-        Glide.with(this)
-                .load(contact.getPhotoUrl())
-                .into(mContactProfileImageView);
+        mContactProfileImageView.setContact(contact);
 
         setOnItemSelectedListener();
     }

@@ -8,19 +8,20 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.diegomalone.neontest.R;
 import com.diegomalone.neontest.activity.BaseActivity;
 import com.diegomalone.neontest.model.Contact;
 import com.diegomalone.neontest.network.service.TransferApi;
 import com.diegomalone.neontest.persistence.IdentificationPreferences;
 import com.diegomalone.neontest.utils.MoneyUtils;
+import com.diegomalone.neontest.views.element.PhotoView;
 import com.diegomalone.neontest.views.element.UltraLoading;
 
 import org.apache.commons.lang3.StringUtils;
@@ -46,7 +47,8 @@ public class SendMoneyDialog extends Dialog {
 
     private View mCloseButton, mErrorView;
     private TextView mNameView, mPhoneView;
-    private ImageView mContactProfileImageView, mErrorIcon;
+    private PhotoView mContactProfileImageView;
+    private ImageView mErrorIcon;
     private EditText mValueToSendEditText;
     private Button mSendMoneyButton;
     private UltraLoading mUltraLoading;
@@ -112,9 +114,8 @@ public class SendMoneyDialog extends Dialog {
         mNameView.setText(contact.getName());
         mPhoneView.setText(contact.getPhone());
 
-        Glide.with(mContext)
-                .load(contact.getPhotoUrl())
-                .into(mContactProfileImageView);
+        mContactProfileImageView.setContact(contact);
+        mContactProfileImageView.setColor(ContextCompat.getColor(mContext, R.color.primaryText));
     }
 
     private void sendMoney() {

@@ -75,6 +75,23 @@ public class Contact {
         return getTransferredValue() != 0d;
     }
 
+    public String getInitials() {
+        if (StringUtils.isBlank(getName())) return null;
+
+        String[] names = StringUtils.split(getName(), " ");
+
+        String initials = "";
+        if (names.length > 0) {
+            initials += StringUtils.substring(names[0], 0, 1);
+        }
+
+        if (names.length > 1) {
+            initials += StringUtils.substring(names[1], 0, 1);
+        }
+
+        return initials;
+    }
+
     @Override
     public String toString() {
         return "Contact{" +
