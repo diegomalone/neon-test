@@ -76,7 +76,7 @@ public class Contact {
     }
 
     public String getInitials() {
-        if (StringUtils.isBlank(getName())) return null;
+        if (StringUtils.isBlank(getName())) return "";
 
         String[] names = StringUtils.split(getName(), " ");
 
@@ -89,7 +89,7 @@ public class Contact {
             initials += StringUtils.substring(names[1], 0, 1);
         }
 
-        return initials;
+        return StringUtils.capitalize(initials);
     }
 
     @Override

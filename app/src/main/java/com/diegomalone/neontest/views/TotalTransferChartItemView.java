@@ -58,8 +58,9 @@ public class TotalTransferChartItemView extends LinearLayout {
         mContactProfileImageView.setContact(totalTransfer.getContact());
 
         LayoutParams params = (LinearLayout.LayoutParams) mChartLineView.getLayoutParams();
-        int heightPercentage = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, totalTransfer.getChartHeight(), getResources().getDisplayMetrics());
-        params.height = (int) (heightPercentage * (MAXIMUM_CHART_LINE_HEIGHT / 100f));
+        params.height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
+                totalTransfer.getChartLineHeight(MAXIMUM_CHART_LINE_HEIGHT),
+                getResources().getDisplayMetrics());
 
         mChartLineView.setLayoutParams(params);
     }

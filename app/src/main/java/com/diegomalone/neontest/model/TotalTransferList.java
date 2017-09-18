@@ -68,6 +68,14 @@ public class TotalTransferList {
         return (int) ((value / highestValue) * 100f);
     }
 
+    public double getHighestValue() {
+        return highestValue;
+    }
+
+    public void setHighestValue(double highestValue) {
+        this.highestValue = highestValue;
+    }
+
     @Override
     public String toString() {
         return "TotalTransferList{" +

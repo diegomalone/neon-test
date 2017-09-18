@@ -10,7 +10,7 @@ public class TotalTransfer implements Comparable<TotalTransfer> {
 
     private final String TAG = getClass().getSimpleName();
 
-    private final int MINIMUM_CHART_LINE_HEIGHT = 8;
+    public static final int MINIMUM_CHART_LINE_HEIGHT = 8;
 
     private Contact contact;
     private double value;
@@ -52,6 +52,10 @@ public class TotalTransfer implements Comparable<TotalTransfer> {
 
     public void setChartHeight(int chartHeight) {
         this.chartHeight = chartHeight;
+    }
+
+    public int getChartLineHeight(int maximumLineHeight) {
+        return (int) (getChartHeight() * (maximumLineHeight / 100f));
     }
 
     @Override
