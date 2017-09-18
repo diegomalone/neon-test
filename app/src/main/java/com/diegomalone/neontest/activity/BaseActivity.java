@@ -11,8 +11,8 @@ import com.diegomalone.neontest.R;
 import com.diegomalone.neontest.persistence.IdentificationPreferences;
 import com.diegomalone.neontest.persistence.database.DatabaseInterface;
 import com.diegomalone.neontest.persistence.database.MemoryDatabaseInterface;
-import com.diegomalone.neontest.views.FeedbackDialog;
-import com.diegomalone.neontest.views.UltraLoading;
+import com.diegomalone.neontest.views.dialog.FeedbackDialog;
+import com.diegomalone.neontest.views.element.UltraLoading;
 
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;

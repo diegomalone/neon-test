@@ -36,7 +36,7 @@
         android:paddingTop="8dp"
         android:visibility="gone" />
 
-    <com.diegomalone.neontest.views.UltraLoading
+    <com.diegomalone.neontest.views.element.UltraLoading
         android:id="@+id/loading"
         android:layout_width="@dimen/loading_full"
         android:layout_height="match_parent"

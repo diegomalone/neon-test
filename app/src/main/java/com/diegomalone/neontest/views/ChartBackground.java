@@ -8,6 +8,7 @@ import android.util.AttributeSet;
 import android.widget.LinearLayout;
 
 import com.diegomalone.neontest.R;
+import com.diegomalone.neontest.views.graphical.Line;
 
 /**
  * Created by Diego Malone on 17/09/17.

@@ -1,4 +1,4 @@
-package com.diegomalone.neontest.views;
+package com.diegomalone.neontest.views.dialog;
 
 import android.app.Dialog;
 import android.content.Context;

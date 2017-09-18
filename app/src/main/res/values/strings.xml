@@ -17,6 +17,7 @@
     <string name="label_amount_to_send">Valor a enviar:</string>
     <string name="send_money_button_send">Enviar</string>
     <string name="send_money_success">Dinheiro enviado com sucesso</string>
+    <string name="send_money_empty_value_error">Eita, você esqueceu de digitar o valor a ser enviado</string>
 
     <!-- Historic Activity -->
     <string name="historic_activity_title">Histórico de eventos</string>

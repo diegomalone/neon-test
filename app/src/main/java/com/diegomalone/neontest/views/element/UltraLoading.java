@@ -1,4 +1,4 @@
-package com.diegomalone.neontest.views;
+package com.diegomalone.neontest.views.element;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.animation.LinearInterpolator;
 
 import com.diegomalone.neontest.R;
+import com.diegomalone.neontest.views.graphical.LoadingArc;
 
 /**
  * Created by Diego Malone on 16/09/17.

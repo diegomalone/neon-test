@@ -1,4 +1,4 @@
-package com.diegomalone.neontest.views;
+package com.diegomalone.neontest.views.graphical;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;

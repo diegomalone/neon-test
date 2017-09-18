@@ -1,9 +1,11 @@
-package com.diegomalone.neontest.views;
+package com.diegomalone.neontest.views.dialog;
 
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.drawable.Animatable;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.view.View;
@@ -19,6 +21,7 @@ import com.diegomalone.neontest.model.Contact;
 import com.diegomalone.neontest.network.service.TransferApi;
 import com.diegomalone.neontest.persistence.IdentificationPreferences;
 import com.diegomalone.neontest.utils.MoneyUtils;
+import com.diegomalone.neontest.views.element.UltraLoading;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -41,9 +44,9 @@ public class SendMoneyDialog extends Dialog {
     private IdentificationPreferences mIdentificationPreferences;
     private TransferApi mTransferApi;
 
-    private View mCloseButton;
+    private View mCloseButton, mErrorView;
     private TextView mNameView, mPhoneView;
-    private ImageView mContactProfileImageView;
+    private ImageView mContactProfileImageView, mErrorIcon;
     private EditText mValueToSendEditText;
     private Button mSendMoneyButton;
     private UltraLoading mUltraLoading;
@@ -80,6 +83,9 @@ public class SendMoneyDialog extends Dialog {
         mValueToSendEditText = findViewById(R.id.value_to_send_edit_text);
         mUltraLoading = findViewById(R.id.loading);
 
+        mErrorIcon = findViewById(R.id.error_icon);
+        mErrorView = findViewById(R.id.error_view);
+
         mValueToSendEditText.addTextChangedListener(MoneyUtils.getMoneyTextWatcher(mContext, mValueToSendEditText));
         mValueToSendEditText.setText("");
 
@@ -114,6 +120,12 @@ public class SendMoneyDialog extends Dialog {
     private void sendMoney() {
         double value = MoneyUtils.getDoubleValue(mValueToSendEditText.getText().toString());
 
+        if (value == 0d) {
+            showErrorView();
+            return;
+        }
+
+        hideErrorView();
         showLoading();
 
         mTransferApi.sendMoney(mContact.getId(), mIdentificationPreferences.getToken(), value)
@@ -136,6 +148,19 @@ public class SendMoneyDialog extends Dialog {
                         throwable.printStackTrace();
                     }
                 });
+    }
+
+    private void showErrorView() {
+        mErrorView.setVisibility(VISIBLE);
+        Drawable errorIcon = mErrorIcon.getDrawable();
+
+        if (errorIcon instanceof Animatable) {
+            ((Animatable) errorIcon).start();
+        }
+    }
+
+    private void hideErrorView() {
+        mErrorView.setVisibility(GONE);
     }
 
     private void showLoading() {
